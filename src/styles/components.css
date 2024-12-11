@@ -1,0 +1,39 @@
+.border {
+  @apply border-b border-gray-300 dark:border-gray-600;
+}
+
+.box {
+  @apply border rounded-md shadow-md;
+}
+
+.link {
+  @apply text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white fontSizeFromLg font-semibold;
+}
+
+.fontSizeFrom3xl {
+  @apply 2xl:text-3xl lg:text-2xl text-xl;
+}
+
+.fontSizeFrom2xl {
+  @apply 2xl:text-2xl lg:text-xl text-lg;
+}
+
+.fontSizeFromXl {
+  @apply 2xl:text-xl lg:text-lg text-base;
+}
+
+.fontSizeFromLg {
+  @apply 2xl:text-lg lg:text-base text-sm;
+}
+
+.fontSizeFromBase {
+  @apply 2xl:text-base lg:text-sm text-xs;
+}
+
+.text-primary-colors {
+  @apply text-black dark:text-white;
+}
+
+.text-secondary-colors {
+  @apply text-gray-800 dark:text-gray-200;
+}
