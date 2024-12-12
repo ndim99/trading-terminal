@@ -5,9 +5,7 @@ import {
   IChartApi,
   ISeriesApi,
 } from "lightweight-charts";
-import { useQuery } from "@tanstack/react-query";
-import { fetchChartData } from "@/utils/fetchChartData";
-import { CHART_DATA_KEY, CHART_DATA_REFETCH_INTERVAL } from "@/common/consts";
+import { useFetchChartData } from "@/hooks/useFetchChartData";
 
 export default function Chart() {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
@@ -22,11 +20,7 @@ export default function Chart() {
     }
   }, []);
 
-  const { data } = useQuery({
-    queryKey: [CHART_DATA_KEY],
-    queryFn: fetchChartData,
-    refetchInterval: CHART_DATA_REFETCH_INTERVAL,
-  });
+  const { chartData } = useFetchChartData();
 
   useEffect(() => {
     if (!chartContainerRef.current) return;
@@ -69,10 +63,10 @@ export default function Chart() {
   }, [resizeChart]);
 
   useEffect(() => {
-    if (data && candleSeriesRef.current) {
-      candleSeriesRef.current.setData(data);
+    if (chartData && candleSeriesRef.current) {
+      candleSeriesRef.current.setData(chartData);
     }
-  }, [data]);
+  }, [chartData]);
 
   return (
     <div className="box h-2/3 p-2.5">

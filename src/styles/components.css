@@ -1,7 +1,6 @@
 .border {
   @apply border-b border-gray-300 dark:border-gray-600;
 }
-
 .box {
   @apply border rounded-md shadow-md;
 }

@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const fetchChartData = async () => {
+export const fetchChartData = async (selectedToken: string) => {
   try {
     const response = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart",
+      `https://api.coingecko.com/api/v3/coins/${selectedToken}/market_chart`,
       {
         params: { vs_currency: "usd", days: "1" },
       }

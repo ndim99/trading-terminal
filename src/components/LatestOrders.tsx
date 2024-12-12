@@ -1,23 +1,10 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { fetchLatestOrders } from "@/utils/fetchLatestOrders";
 import { formatDistanceToNow } from "date-fns";
-import {
-  LATEST_ORDERS_KEY,
-  LATEST_ORDERS_REFETCH_INTERVAL,
-} from "@/common/consts";
 import { formatPrice } from "@/utils/priceFormatting";
+import { useFetchLatestOrders } from "@/hooks/useFetchLatestOrders";
 
 export default function LatestOrders() {
-  const {
-    data: orders,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: [LATEST_ORDERS_KEY],
-    queryFn: () => fetchLatestOrders(),
-    refetchInterval: LATEST_ORDERS_REFETCH_INTERVAL,
-  });
+  const { latestOrders, isLoading, isError } = useFetchLatestOrders();
 
   if (isLoading) return <div>Loading orders...</div>;
   if (isError) return <div>Error fetching orders</div>;
@@ -31,32 +18,35 @@ export default function LatestOrders() {
         <thead>
           <tr className="bg-[#010109]">
             <th className="p-2 border-y border-gray-700">Price (USD)</th>
-            <th className="p-2 border-y border-gray-700 text-start">Volume</th>
+
             <th className="p-2 border-y border-gray-700 text-center">Type</th>
             <th className="p-2 border-y border-gray-700 text-end">Time</th>
           </tr>
         </thead>
         <tbody>
-          {orders?.map((order, index) => (
-            <tr key={index} className="odd:bg-gray-800 even:bg-gray-700">
-              <td className="p-2 border-y border-gray-700">
-                {formatPrice(order.price)}
-              </td>
-              <td className="p-2 border-y border-gray-700 text-start">
-                {formatPrice(order.qty)} BTC
-              </td>
-              <td
-                className={`p-2 border-y border-gray-700 text-center ${
-                  order.isBuyerMaker ? "text-red-500" : "text-green-500"
-                }`}
+          {latestOrders?.map(
+            (order: { price: number; side: string; time: Date }) => (
+              <tr
+                key={order.price}
+                className="odd:bg-gray-800 even:bg-gray-700"
               >
-                {order.isBuyerMaker ? "Sell" : "Buy"}
-              </td>
-              <td className="p-2 border-y border-gray-700 text-end">
-                {formatDistanceToNow(order.time)}
-              </td>
-            </tr>
-          ))}
+                <td className="p-2 border-y border-gray-700">
+                  {formatPrice(order.price)}
+                </td>
+
+                <td
+                  className={`p-2 border-y border-gray-700 text-center ${
+                    order.side ? "text-red-500" : "text-green-500"
+                  }`}
+                >
+                  {order.side ? "Sell" : "Buy"}
+                </td>
+                <td className="p-2 border-y border-gray-700 text-end">
+                  {formatDistanceToNow(order.time)}
+                </td>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
     </div>

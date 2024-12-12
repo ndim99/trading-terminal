@@ -4,6 +4,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import Layout from "../components/Layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { TokenProvider } from "@/providers";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient({
@@ -16,10 +17,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     },
   });
   return (
-    <QueryClientProvider client={queryClient}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </QueryClientProvider>
+    <TokenProvider>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </QueryClientProvider>
+    </TokenProvider>
   );
 }

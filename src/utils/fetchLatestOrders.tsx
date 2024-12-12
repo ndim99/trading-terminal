@@ -1,20 +1,33 @@
-import { Trade } from "@/types";
 import axios from "axios";
 
-export const fetchLatestOrders = async (): Promise<Trade[]> => {
+export const fetchLatestOrders = async (selectedToken: string) => {
   try {
-    const response = await axios.get<Trade[]>(
-      "https://api.binance.com/api/v3/trades",
+    const response = await axios.get(
+      `https://api.coingecko.com/api/v3/coins/${selectedToken}/market_chart`,
       {
-        params: { symbol: "BTCUSDT", limit: 10 },
+        params: { vs_currency: "usd", days: "1" },
       }
     );
 
-    if (!response.data) {
-      throw new Error("No data received from Binance API");
+    if (
+      !response.data ||
+      !response.data.prices ||
+      !response.data.total_volumes
+    ) {
+      throw new Error("No data received from CoinGecko API");
     }
 
-    return response.data;
+    const formattedOrders = response.data.prices
+      .slice(-10)
+      .reverse()
+      .map((price: [number, number]) => {
+        return {
+          time: new Date(price[0]),
+          price: price[1],
+          side: Math.random() > 0.5 ? "buy" : "sell",
+        };
+      });
+    return formattedOrders;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Axios error:", error.message);
