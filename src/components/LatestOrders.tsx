@@ -17,7 +17,7 @@ export default function LatestOrders() {
           Error fetching orders
         </div>
       ) : (
-        <div className="box flex flex-col gap-2.5">
+        <div className="box flex flex-col gap-2.5 w-full">
           <p className="px-2.5 pt-2.5 text-primary-colors fontSizeFromLg font-semibold">
             Latest Orders
           </p>

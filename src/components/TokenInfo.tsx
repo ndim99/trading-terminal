@@ -8,7 +8,7 @@ export default function TokenInfo() {
   const { data, isLoading, isError } = useFetchTokenInfo();
 
   return (
-    <div className="p-2.5 border rounded-md shadow-md flex flex-col gap-2.5">
+    <div className="p-2.5 border rounded-md shadow-md flex flex-col gap-2.5 w-full">
       <h2 className="fontSizeFromLg font-semibold text-white">Token Info</h2>
       {isError ? (
         <div className="text-white fontSizeFromLg font-semibold">

@@ -69,7 +69,7 @@ export default function Chart() {
   }, [chartData]);
 
   return (
-    <div className="box h-2/3 p-2.5">
+    <div className="box w-full lg:h-2/3 h-[500px] p-2.5">
       <div
         ref={chartContainerRef}
         className="relative rounded-md w-full h-full"
