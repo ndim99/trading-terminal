@@ -37,9 +37,9 @@ export default function TokenSearchBar() {
   );
 
   return (
-    <div className="flex items-center gap-2 px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md">
-      <div className="border border-gray-300 dark:border-gray-600 rounded-md">
-        <p className="font-semibold fontSizeFromLg text-primary-colors px-2 py-1.5 capitalize">
+    <div className="flex items-center gap-2 px-2 py-1.5 border border-gray-600 rounded-md text-white">
+      <div className="border border-gray-600 rounded-md">
+        <p className="font-semibold fontSizeFromLg px-2 py-1.5 capitalize">
           {selectedToken}
         </p>
       </div>
@@ -49,11 +49,11 @@ export default function TokenSearchBar() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search token..."
-          className="px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md w-full outline-0 bg-gray-900 text-primary-colors fontSizeFromLg"
+          className="px-2 py-1.5 border border-gray-600 rounded-md w-full outline-0 bg-gray-900 fontSizeFromLg"
           onClick={() => setShowMore((prevState) => !prevState)}
         />
         {showMore && (
-          <ul className="absolute bg-gray-900 border border-gray-300 dark:border-gray-600 w-full mt-1 max-h-40 overflow-y-auto z-50 rounded-md">
+          <ul className="absolute bg-gray-900 border border-gray-600 w-full mt-1 max-h-40 overflow-y-auto z-50 rounded-md">
             {filteredTokens.map((token) => (
               <li
                 key={token.id}

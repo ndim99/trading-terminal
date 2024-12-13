@@ -1,5 +1,5 @@
 .border {
-  @apply border-b border-gray-300 dark:border-gray-600;
+  @apply border-b border-gray-600;
 }
 .box {
   @apply border rounded-md shadow-md;
@@ -30,9 +30,9 @@
 }
 
 .text-primary-colors {
-  @apply text-black dark:text-white;
+  @apply text-white;
 }
 
 .text-secondary-colors {
-  @apply text-gray-800 dark:text-gray-200;
+  @apply text-gray-200;
 }
