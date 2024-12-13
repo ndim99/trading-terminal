@@ -50,9 +50,9 @@ export const formatPrice = (
   precision?: number | undefined,
   gr0 = true
 ): string => {
-  if (!num) {
-    return num.toString();
-  }
+  // if (!num) {
+  //   return num.toString();
+  // }
 
   if (precision === undefined) {
     precision = calcPricePrecision(+num);

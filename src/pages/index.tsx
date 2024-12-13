@@ -1,6 +1,6 @@
 import Chart from "@/components/Chart";
 import LatestOrders from "@/components/LatestOrders";
-import TokenInfoComponent from "@/components/TokenInfoComponent";
+import TokenInfo from "@/components/TokenInfo";
 import TokenSearchBar from "@/components/TokenSearch";
 import Trade from "@/components/Trade";
 
@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex items-center gap-2.5 h-screen">
         <div className="flex flex-col gap-2.5 lg:w-1/4">
           <Trade />
-          <TokenInfoComponent />
+          <TokenInfo />
         </div>
         <div className="flex flex-col gap-2.5 lg:w-3/4 h-full">
           <Chart />
