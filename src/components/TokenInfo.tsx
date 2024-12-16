@@ -3,13 +3,17 @@ import { useFetchTokenInfo } from "@/hooks/useFetchTokenInfo";
 import TokenInfoBox from "./TokenInfoBox";
 import { formatPrice } from "@/utils/priceFormatting";
 import { formatNumericAmountCompact } from "@/utils/formatting";
+import { useToken } from "@/providers";
 
 export default function TokenInfo() {
   const { data, isLoading, isError } = useFetchTokenInfo();
+  const { selectedToken } = useToken();
 
   return (
     <div className="p-2.5 border rounded-md shadow-md flex flex-col gap-2.5 w-full">
-      <h2 className="fontSizeFromLg font-semibold text-white">Token Info</h2>
+      <h2 className="fontSizeFromLg font-semibold text-white">
+        Token Info (<span className="uppercase">{selectedToken.symbol}</span>)
+      </h2>
       {isError ? (
         <div className="text-white fontSizeFromLg font-semibold">
           Error loading token info.

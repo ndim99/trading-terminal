@@ -39,8 +39,8 @@ export default function TokenSearchBar() {
   return (
     <div className="flex items-center gap-2 px-2 py-1.5 border border-gray-600 rounded-md text-white">
       <div className="border border-gray-600 rounded-md">
-        <p className="font-semibold fontSizeFromLg px-2 py-1.5 capitalize">
-          {selectedToken}
+        <p className="font-semibold fontSizeFromLg px-2 py-1.5 uppercase">
+          {selectedToken.symbol}
         </p>
       </div>
       <div className="relative w-full">
@@ -58,12 +58,12 @@ export default function TokenSearchBar() {
               <li
                 key={token.id}
                 onClick={() => {
-                  setSelectedToken(token.id);
+                  setSelectedToken(token);
                   setSearch("");
                   setShowMore(false);
                 }}
                 className={`${
-                  selectedToken === token.id
+                  selectedToken.id === token.id
                     ? "text-secondary-colors cursor-not-allowed bg-gray-800"
                     : "text-primary-colors hover:bg-gray-700"
                 } px-2 py-1.5 cursor-pointer font-normal  fontSizeFromLg`}

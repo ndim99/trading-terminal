@@ -15,7 +15,7 @@ export const useFetchLatestOrders = () => {
     isError,
   } = useQuery({
     queryKey: [LATEST_ORDERS_KEY, selectedToken],
-    queryFn: () => fetchLatestOrders(selectedToken),
+    queryFn: () => fetchLatestOrders(selectedToken.id),
     refetchInterval: LATEST_ORDERS_REFETCH_INTERVAL,
     enabled: !!selectedToken,
   });

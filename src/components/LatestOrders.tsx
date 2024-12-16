@@ -2,10 +2,11 @@ import React from "react";
 import { formatDistanceToNow } from "date-fns";
 import { formatPrice } from "@/utils/priceFormatting";
 import { useFetchLatestOrders } from "@/hooks/useFetchLatestOrders";
+import { useToken } from "@/providers";
 
 export default function LatestOrders() {
   const { latestOrders, isLoading, isError } = useFetchLatestOrders();
-
+  const { selectedToken } = useToken();
   return (
     <>
       {isLoading ? (
@@ -19,7 +20,8 @@ export default function LatestOrders() {
       ) : (
         <div className="box flex flex-col gap-2.5 w-full">
           <p className="px-2.5 pt-2.5 text-primary-colors fontSizeFromLg font-semibold">
-            Latest Orders
+            Latest Orders (
+            <span className="uppercase">{selectedToken.symbol}</span>)
           </p>
           <table className="w-full text-left border-collapse text-white">
             <thead>

@@ -12,7 +12,7 @@ export const useFetchChartData = () => {
     isError,
   } = useQuery({
     queryKey: [CHART_DATA_KEY, selectedToken],
-    queryFn: () => fetchChartData(selectedToken),
+    queryFn: () => fetchChartData(selectedToken.id),
     refetchInterval: CHART_DATA_REFETCH_INTERVAL,
     enabled: !!selectedToken,
   });

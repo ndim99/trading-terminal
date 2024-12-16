@@ -1,8 +1,9 @@
+import { TokenData } from "@/types";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type TokenContextType = {
-  selectedToken: string;
-  setSelectedToken: (token: string) => void;
+  selectedToken: TokenData;
+  setSelectedToken: (token: TokenData) => void;
 };
 
 const TokenContext = createContext<TokenContextType | undefined>(undefined);
@@ -10,7 +11,11 @@ const TokenContext = createContext<TokenContextType | undefined>(undefined);
 export const TokenProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [selectedToken, setSelectedToken] = useState<string>("bitcoin"); // Default токен
+  const [selectedToken, setSelectedToken] = useState<TokenData>({
+    id: "bitcoin",
+    name: "Bitcoin",
+    symbol: "BTC",
+  });
 
   return (
     <TokenContext.Provider value={{ selectedToken, setSelectedToken }}>

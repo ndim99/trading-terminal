@@ -54,9 +54,11 @@ export default function Trade() {
       <button
         className={`${
           orderType === "buy" ? "bg-green-500" : " bg-red-500"
-        } w-full rounded-md p-2 fontSizeFromLg font-semibold text-primary-colors`}
+        } w-full rounded-md p-2 fontSizeFromLg font-semibold text-primary-colors uppercase`}
       >
-        {orderType === "buy" ? `Buy ${selectedToken}` : `Sell ${selectedToken}`}
+        {orderType === "buy"
+          ? `Buy ${selectedToken.symbol}`
+          : `Sell ${selectedToken.symbol}`}
       </button>
     </div>
   );

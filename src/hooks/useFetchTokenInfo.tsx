@@ -8,7 +8,7 @@ export const useFetchTokenInfo = () => {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: [TOKEN_INFO_KEY, selectedToken],
-    queryFn: () => fetchTokenInfo(selectedToken),
+    queryFn: () => fetchTokenInfo(selectedToken.id),
     refetchInterval: TOKEN_INFO_REFETCH_INTERVAL,
     enabled: !!selectedToken,
   });
